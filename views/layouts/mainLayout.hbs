@@ -7,12 +7,33 @@
             href="https://bootswatch.com/4/cosmo/bootstrap.min.css">
         <link rel="stylesheet"
             href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="../../static/css/mainLayout.css">
         <title>PhoneBook</title>
+        <style>html, body {
+                        max-width: 100%;
+                        overflow-x: hidden;
+        }</style>
     </head>
-    <body class="bg-light">
+    <body class="bg-dark">
+
+        <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+            <a class="navbar-brand" href="/list/1">
+                <i class="fas fa-book" style="color:orange;"></i>
+                PhoneBook</a>
+            <button class="navbar-toggler d-lg-none" type="button"
+                data-toggle="collapse" data-target="#collapsibleNavId"
+                aria-controls="collapsibleNavId"
+                aria-expanded="false" aria-label="Toggle navigation"></button>
+            <div class="collapse navbar-collapse" id="collapsibleNavId">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+
+                </ul>
+            </div>
+        </nav>
 
         <div class="row">
-            <div class="col-md-8 offset-md-2 col-sm-10 offset-sm-1" style="background-color:white; margin-top:25px; padding:20px;">
+            <div class="col-md-8 offset-md-2 col-sm-10 offset-sm-1"
+                style="background-color:white; margin-top:25px; padding:20px;">
                 {{{body}}}
             </div>
         </div>

@@ -11,7 +11,7 @@ router.get('/', (req, res, next) => {
 
 router.post('/', (req, res) => {
     if (req.body._id==''){
-        insertContact(req, res, next);
+        insertContact(req, res);
     }else{
         updateContact(req, res);
         }
@@ -39,7 +39,7 @@ router.get('/list/:page', (req, res, next) => {
 });
 
 
-function insertContact(req, res, next) {
+function insertContact(req, res) {
     var contact = new Contact();
     console.log('save running')
     contact.name = req.body.fullname;
@@ -48,7 +48,7 @@ function insertContact(req, res, next) {
     contact.birthday = req.body.birthday;
     contact.save((err, doc) => {
         if (!err) {
-            res.redirect('contact/list/1');
+            res.redirect('/list/1');
         } else {
             if (err.name === 'MongoError' && err.code === 11000) {
                 return res.status(422).send({ success: false, message: 'User already exist!' });
@@ -60,7 +60,7 @@ function insertContact(req, res, next) {
 
 function updateContact(req, res) {
     Contact.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true }, (err, doc) => {
-        if (!err) { res.redirect('contact/list/1'); }
+        if (!err) { res.redirect('/list/1'); }
         else {
             if (err.name == 'ValidationError') {
                 handleValidationError(err, req.body);
@@ -90,7 +90,7 @@ router.get('/:id', (req, res) => {
 router.get('/delete/:id',(req, res)=>{
     Contact.findByIdAndRemove(req.params.id, (err, doc) => {
         if (!err) {
-            res.redirect('/contact/list/1');
+            res.redirect('/list/1');
         }
         else { console.log('Error in deletion :' + err); }
     });
