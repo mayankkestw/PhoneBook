@@ -1,23 +1,33 @@
-<h3>{{viewTitle}}</h3>
+<div style="padding-left: 200px; padding-right:200px;">
+    <h3>{{viewTitle}}</h3>
 
-<form action="/contact" method="POST" autocomplete="off" >
-    <div class="form-group">
-        <label>Name <span style="color: red;">*</span></label>
-        <input type="text" class="form-control" name="fullname" placeholder="Enter your name" required=true>
-    </div>
-    <div class="form-group">
-        <label>Phone number <span style="color: red;">*</span> </label>
-        <input type="text" pattern="[0-9]{10}" class="form-control" name="mobile" placeholder="Add number" required=true>
-    </div>
-    <div class="form-group">
-        <label>Email </label>
-        <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control" name="email" placeholder="Enter E-mail">
-    </div>
-    <div class="form-group">
-        <label>DOB </label>
-        <input type="date" class="form-control" name="birthday" value="{{contact.birthday}}">
-    </div>
-    <div class="form-group" align="right">
-        <button type="submit" class="btn btn-info"><i class="fa fa-save p-2 "></i>Save</button>
-    </div>
-</form>
+    <form action="/contact" method="POST" autocomplete="off">
+        <div class="form-group">
+            <label>Name <span style="color: red;">*</span></label>
+            <input type="text" class="form-control" name="fullname"
+                placeholder="Enter your name" required=true>
+        </div>
+        <div class="form-group">
+            <label>Phone number <span style="color: red;">*</span> </label>
+            <input type="text" pattern="[0-9]{10}" class="form-control"
+                name="mobile" placeholder="Add number" required=true>
+        </div>
+        <div class="form-group">
+            <label>Email </label>
+            <input type="email"
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                class="form-control" name="email" placeholder="Enter E-mail">
+        </div>
+        <div class="form-group">
+            <label>DOB </label>
+            <input type="date" class="form-control" name="birthday"
+                value="{{contact.birthday}}">
+        </div>
+        <div class="form-group" align="right">
+            <button type="submit" class="btn btn-info"><i class="fa fa-save p-2"></i>Save</button>
+            <a class="btn btn-secondary" href="/contact/list/1"><i class="fa
+                    fa-list-alt"></i> View All</a>
+
+        </div>
+    </form>
+</div>
