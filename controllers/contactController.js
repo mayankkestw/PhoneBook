@@ -96,4 +96,27 @@ router.get('/delete/:id',(req, res)=>{
     });
 });
 
+router.get('/autocomplete/', function(req, res, next){
+    console.log("working");
+    var regex = new RegExp(req.query["term"],'i');
+    console.log(regex);
+    var contactFilter = Contact.find({name:regex}, {'name':1}).sort({"updated_at":-1}).sort({"created_at":-1}).limit(10);
+    contactFilter.exec(function(err, data){
+        console.log(data);
+        var result = [];
+        if(!arr){
+            if(data && data.length && data.length>0){
+                data.forEach(user=>{
+                    let obj={
+                        id:user._id,
+                        label:user.name
+                    };
+                    result.push(obj);
+                });
+            }
+            res.jsonp(result);
+        }
+    });
+});
+
 module.exports = router;
