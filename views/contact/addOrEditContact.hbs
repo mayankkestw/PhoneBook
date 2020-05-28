@@ -2,20 +2,20 @@
 
 <form action="/contact" method="POST" autocomplete="off" >
     <div class="form-group">
-        <label>Name </label>
-        <input type="text" class="form-control" name="fullname" placeholder="Enter your name">
+        <label>Name <span style="color: red;">*</span></label>
+        <input type="text" class="form-control" name="fullname" placeholder="Enter your name" required=true>
+    </div>
+    <div class="form-group">
+        <label>Phone number <span style="color: red;">*</span> </label>
+        <input type="text" pattern="[0-9]{10}" class="form-control" name="mobile" placeholder="Add number" required=true>
     </div>
     <div class="form-group">
         <label>Email </label>
-        <input type="email" class="form-control" name="email" placeholder="Enter E-mail">
-    </div>
-    <div class="form-group">
-        <label>Phone number </label>
-        <input type="tel" class="form-control" name="mobile" placeholder="Add number">
+        <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control" name="email" placeholder="Enter E-mail">
     </div>
     <div class="form-group">
         <label>DOB </label>
-        <input type="date" class="form-control" name="birthday">
+        <input type="date" class="form-control" name="birthday" value="{{contact.birthday}}">
     </div>
     <div class="form-group" align="right">
         <button type="submit" class="btn btn-info"><i class="fa fa-save p-2 "></i>Save</button>

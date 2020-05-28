@@ -24,6 +24,9 @@ function insertContact(req, res){
         if(!err){
             res.redirect('contact/list');
         }else{
+            if (err.name === 'MongoError' && err.code === 11000) {
+                return res.status(422).send({ success: false, message: 'User already exist!' });
+              }
             console.log("Error during record insertion :"+ err)
         }
     });

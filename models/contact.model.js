@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 var contactSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: "this is a required field"
+        required: 'this is a required field.'
     },
     email: {
         type: String
@@ -17,7 +17,6 @@ var contactSchema = new mongoose.Schema({
         type: Date
     }
 });
-
 
 
 mongoose.model('Contact', contactSchema)
