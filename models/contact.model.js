@@ -3,17 +3,21 @@ const mongoose = require('mongoose');
 var contactSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: "this is a required field"
     },
     email: {
         type: String
     },
     mobile: {
-        type: String
+        type: String,
+        required: true,
+        unique: true
     },
     birthday: {
         type: Date
     }
 });
+
+
 
 mongoose.model('Contact', contactSchema)
