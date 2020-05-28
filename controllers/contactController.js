@@ -9,8 +9,12 @@ router.get('/', (req, res, next) => {
     });
 });
 
-router.post('/', (req, res, next) => {
-    insertContact(req, res, next);
+router.post('/', (req, res) => {
+    if (req.body._id==''){
+        insertContact(req, res, next);
+    }else{
+        updateContact(req, res);
+        }
 });
 
 router.get('/list/:page', (req, res, next) => {
@@ -22,7 +26,6 @@ router.get('/list/:page', (req, res, next) => {
         .skip((perPage*page)-perPage)
         .limit(perPage)
         .exec((err, contacts)=>{
-            console.log(contacts);
             Contact.count((err, count)=>{
             if(err) return next(err);
             res.render('contact/list', {
@@ -55,6 +58,33 @@ function insertContact(req, res, next) {
     });
 }
 
+function updateContact(req, res) {
+    Contact.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true }, (err, doc) => {
+        if (!err) { res.redirect('contact/list/1'); }
+        else {
+            if (err.name == 'ValidationError') {
+                handleValidationError(err, req.body);
+                res.render("contact/addOrEditContact", {
+                    viewTitle: 'Update Contact',
+                    contact: req.body
+                });
+            }
+            else
+                console.log('Error during record update : ' + err);
+        }
+    });
+}
+
+router.get('/:id', (req, res) => {
+    Contact.findById(req.params.id, (err, docs) => {
+        if (!err) {
+            res.render("contact/addOrEditContact", {
+                viewTitle: "Update Contact",
+                contact: JSON.parse(JSON.stringify(docs))
+            });
+        }
+    });
+});
 
 
 module.exports = router;

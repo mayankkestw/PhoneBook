@@ -14,7 +14,7 @@ var contactSchema = new mongoose.Schema({
         unique: true
     },
     birthday: {
-        type: Date
+        type: String
     }
 });
 
