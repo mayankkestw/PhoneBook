@@ -26,7 +26,7 @@ router.get('/list/:page', (req, res, next) => {
         .skip((perPage*page)-perPage)
         .limit(perPage)
         .exec((err, contacts)=>{
-            Contact.count((err, count)=>{
+            Contact.countDocuments((err, count)=>{
             if(err) return next(err);
             res.render('contact/list', {
                 list:contacts,
@@ -86,5 +86,14 @@ router.get('/:id', (req, res) => {
     });
 });
 
+
+router.get('/delete/:id',(req, res)=>{
+    Contact.findByIdAndRemove(req.params.id, (err, doc) => {
+        if (!err) {
+            res.redirect('/contact/list/1');
+        }
+        else { console.log('Error in deletion :' + err); }
+    });
+});
 
 module.exports = router;
