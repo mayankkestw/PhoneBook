@@ -61,8 +61,8 @@
                     source: function(req, res){
 
                         $.ajax({
-                            url:"autocomplete/",
-                            dataType:"json",
+                            url:"/autocomplete/",
+                            dataType:"jsonp",
                             type:"GET",
                             data:req,
                             success: function(data){
