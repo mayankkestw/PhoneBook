@@ -22,7 +22,7 @@ router.get('/list/:page', (req, res, next) => {
     let page = req.params.page || 1;
 
     Contact
-        .find({}).lean()
+        .find({}).lean().sort({name:"asc"})
         .skip((perPage*page)-perPage)
         .limit(perPage)
         .exec((err, contacts)=>{
